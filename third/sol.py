@@ -7,7 +7,7 @@ def products_with_categories(category, product, relation):
     try:
         result = product.\
             join(relation, product.id == relation.product_id, 'left').\
-            join(category, category.id == relation.category_id, 'inner').\
+            join(category, category.id == relation.category_id, 'left').\
             select(product.name, category.name)
     except Exception:
         raise
