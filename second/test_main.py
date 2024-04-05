@@ -4,8 +4,8 @@ import random
 from datetime import datetime
 import math
 
-@pytest.fixture
-def get_seed(scope='function'):
+@pytest.fixture(scope='module')
+def get_seed():
     random.seed(datetime.timestamp(datetime.now()))
 
 
@@ -19,7 +19,7 @@ def test_round_correct_values(get_seed):
         assert test[1] == calculate_figure(test[0])
 
 
-def test_round_with_negative(get_seed):
+def test_round_with_negative():
     tc = []
     for i in range(10):
         r = -random.random()*random.randint(1, 3)
